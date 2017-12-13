@@ -7,17 +7,22 @@ export default class Movie extends Component {
         Movies.remove(this.props.id);
     }
 
-
     render() {
 
         return (
-            <li className='movie'>
+          <tr>
+            <td className="movie-title">
+                <span className="title">{this.props.title} (bd: movies)</span>
+            </td>
+            <td className="movie-director">
+                <span>{(this.props.name) ? this.props.name : 'Non renseigné'}</span>
+            </td>
+            <td class="last-col">
                 <button className="delete" onClick={this.deleteThisMovie}>
                     &times;
                 </button>
-
-                <span className="title">{this.props.title} (bd: movies)</span>
-            </li>
+            </td>
+          </tr>
      );
  }
 }

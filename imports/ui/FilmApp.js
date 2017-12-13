@@ -24,7 +24,6 @@ renderDirectors(){
 
 handleSubmit = (event) => {
   event.preventDefault();
-  console.log('bonjour');
   Movies.insert({
     title : this._newMovie.value,
     name : this._newDirector.value

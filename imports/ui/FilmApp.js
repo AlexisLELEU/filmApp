@@ -1,18 +1,13 @@
 import React, { Component } from 'react';
 
 import Movie from './Movie.js';
+import { Movies } from '../api/movies.js';
+import { withTracker } from 'meteor/react-meteor-data';
 
-export default class FilmApp extends Component {
- getMovies(){
-    return [
-        { _id: 1, title: 'Titanic' },
-        { _id: 2, title: 'Interstellar' },
-        { _id: 3, title: 'Reservoir Dogs' },
-      ];
- }
+class FilmApp extends Component {
 
  renderMovies(){
-    return this.getMovies().map((movie) => (
+    return this.props.movie.map((movie) => (
         <Movie key={movie.id} title={movie.title} />
       ));
  }
@@ -31,3 +26,9 @@ export default class FilmApp extends Component {
    );
  }
 }
+
+export default withTracker(() => {
+    return {
+        movie: Movies.find({}).fetch(), // recupère les données de la collection
+    };
+})(FilmApp); // exporte la class Filmapp

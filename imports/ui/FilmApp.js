@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 
 import Movie from './Movie.js';
 import { Movies } from '../api/movies.js';
+import Director from './Director.js';
+import { Directors } from '../api/directors.js';
 import ReactDOM from 'react-dom';
 import { withTracker } from 'meteor/react-meteor-data';
 
@@ -14,41 +16,53 @@ class FilmApp extends Component {
 
       ));
  }
+renderDirectors(){
+  return this.props.director.map((director) => (
+      <Director key={director._id} id={director._id} name={director.name} />
+    ));
+}
 
+handleSubmit = (event) => {
+  event.preventDefault();
+  console.log('bonjour');
+  Movies.insert({
+    title : this._newMovie.value,
+    name : this._newDirector.value
+  });
+  this._newMovie.value = '';
 
-    handleSubmit = (event) => {
-        event.preventDefault();
+  Directors.insert({
+    name : this._newDirector.value
+  });
+  this._newDirector.value = '';
+}
 
-        const title = ReactDOM.findDOMNode(this.refs.newMovie).value.trim();
-        Movies.insert({
-            title
-        });
-
-        // Clear form
-        ReactDOM.findDOMNode(this.refs.newMovie).value = '';
-    }
-
-
-
- render() {
-   return (
-     <div className="main-container">
-       <header>
-         <h1>Movies List</h1>
-       </header>
-         <form className="new-movie" onSubmit={this.handleSubmit} >
-             <input type="text" ref="newMovie" placeholder="titre du film"/>
-         </form>
+render() {
+ return (
+   <div className="main-container">
+     <header>
+       <h1>Movies List</h1>
+     </header>
+     <div>
+       <form className="new-movie" onSubmit={this.handleSubmit} >
+           <input type="text" id="newMovie" ref={(el) => this._newMovie = el} placeholder="titre du film"/>
+           <input type="text" id="newDirector" ref={(el) => this._newDirector = el} placeholder="nom du réalisateur"/>
+           <button type="submit">go</button>
+       </form>
        <ul>
          {this.renderMovies()}
+         {this.renderDirectors()}
        </ul>
-     </div>
-   );
- }
+      </div>
+    </div>
+    );
+  }
 }
 
 export default withTracker(() => {
-    return {
-        movie: Movies.find().fetch(), // recupère les données de la collection
-    };
+  return {
+      movie: Movies.find().fetch(),
+      director: Directors.find().fetch(), // recupère les données de la collection
+  };
+
 })(FilmApp); // exporte la class Filmapp

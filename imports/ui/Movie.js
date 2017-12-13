@@ -9,14 +9,14 @@ export default class Movie extends Component {
 
 
     render() {
-        console.log(this.props)
+
         return (
             <li className='movie'>
                 <button className="delete" onClick={this.deleteThisMovie}>
                     &times;
                 </button>
 
-                <span className="title">{this.props.title}</span>
+                <span className="title">{this.props.title} (bd: movies)</span>
             </li>
      );
  }

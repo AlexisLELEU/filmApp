@@ -9,13 +9,13 @@ export default class Director extends Component {
 
   render() {
    return (
-     <td className='director'>
+     <li className='director'>
          <button className="delete" onClick={this.deleteThisDirector}>
              &times;
          </button>
 
          <a href="#" className="name">{this.props.name} (bd: directors)</a>
-     </td>
+     </li>
    );
   }
 }

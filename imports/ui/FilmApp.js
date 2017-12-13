@@ -4,6 +4,9 @@ import { withTracker } from 'meteor/react-meteor-data';
 
 import Movie from './Movie.js';
 import Director from './Director.js';
+import Form from './Form.js';
+import MoviesList from './MoviesList.js';
+import DirectorsList from './DirectorsList.js';
 import { Movies } from '../api/movies.js';
 import { Directors } from '../api/directors.js';
 
@@ -37,37 +40,31 @@ class FilmApp extends Component {
   }
 
   render() {
-  return (
-    <div className="main-container">
-      <header>
-        <h1>Movies List</h1>
-      </header>
-      <div>
-        <form className="new-movie" onSubmit={this.handleSubmit}>
-            <input type="text" id="newMovie" ref={(el) => this._newMovie = el} placeholder="titre du film"/>
-            <input type="text" id="newDirector" ref={(el) => this._newDirector = el} placeholder="nom du réalisateur"/>
-            <button type="submit">Ajouter</button>
-        </form>
-        <table className="movies-list">
-          <thead>
-            <td>Titre du film</td>
-            <td>Réalisateur</td>
-            <td class="last-col">Actions</td>
-          </thead>
-          <tbody>
-            {this.renderMovies()}
-          </tbody>
-        </table>
+    return (
+      <div className="main-container">
+        <header>
+          <h1>Movies List</h1>
+        </header>
+        <div>
+          <Form 
+            submit={this.handleSubmit} 
+            refMovie={(el) => this._newMovie = el} 
+            refDir={(el) => this._newDirector = el}/>
+
+          <DirectorsList
+            show={this.renderDirectors()}/>
+
+          <MoviesList
+            show={this.renderMovies()}/>
+        </div>
       </div>
-    </div>
     );
   }
 }
 
 export default withTracker(() => {
-return {
-    movie: Movies.find().fetch(),
-    director: Directors.find().fetch(), // recupère les données de la collection
-};
-
+  return {
+      movie: Movies.find().fetch(),
+      director: Directors.find().fetch(), // recupère les données de la collection
+  };
 })(FilmApp); // exporte la class Filmapp

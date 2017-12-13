@@ -8,7 +8,6 @@ export default class Movie extends Component {
     }
 
     render() {
-
         return (
           <tr>
             <td className="movie-title">
@@ -17,7 +16,7 @@ export default class Movie extends Component {
             <td className="movie-director">
                 <span>{(this.props.name) ? this.props.name : 'Non renseigné'}</span>
             </td>
-            <td class="last-col">
+            <td className="last-col">
                 <button className="delete" onClick={this.deleteThisMovie}>
                     &times;
                 </button>

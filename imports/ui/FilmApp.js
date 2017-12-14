@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import { withTracker } from 'meteor/react-meteor-data';
+import { Session } from 'meteor/session'
 
 import Movie from './Movie.js';
 import Director from './Director.js';
@@ -19,8 +20,8 @@ class FilmApp extends Component {
   }
 
   renderDirectors(){
-  return this.props.director.map((director) => (
-      <Director key={director._id} id={director._id} name={director.name} />
+     return this.props.director.map((director) => (
+      <Director key={director._id} id={director._id} name={director.name}/>
     ));
   }
 
@@ -38,6 +39,8 @@ class FilmApp extends Component {
     });
     this._newDirector.value = '';
   }
+
+
 
   render() {
     return (
@@ -64,7 +67,7 @@ class FilmApp extends Component {
 
 export default withTracker(() => {
   return {
-      movie: Movies.find().fetch(),
+      movie: Movies.find({'name': Session.get('rea')}).fetch(),
       director: Directors.find().fetch(), // recupère les données de la collection
   };
 })(FilmApp); // exporte la class Filmapp

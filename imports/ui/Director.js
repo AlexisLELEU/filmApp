@@ -14,7 +14,8 @@ export default class Director extends Component {
 
   filterMovie = () => {
       console.log(this.props.name);
-      Session.set('rea', this.props.name);
+      Session.set('name',  {'name': this.props.name});
+
   };
 
   render() {

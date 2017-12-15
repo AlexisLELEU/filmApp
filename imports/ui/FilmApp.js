@@ -34,11 +34,17 @@ class FilmApp extends Component {
     });
     this._newMovie.value = '';
 
+
+    console.log(this._newDirector.value);
     Directors.insert({
       name : this._newDirector.value
     });
     this._newDirector.value = '';
   }
+
+    showAll = () => {
+        Session.set('name',  {});
+    }
 
 
 
@@ -54,6 +60,7 @@ class FilmApp extends Component {
             refMovie={(el) => this._newMovie = el} 
             refDir={(el) => this._newDirector = el}/>
 
+            <a href="#" onClick={this.showAll} className="name">All movie</a>
           <DirectorsList
             show={this.renderDirectors()}/>
 
@@ -67,7 +74,7 @@ class FilmApp extends Component {
 
 export default withTracker(() => {
   return {
-      movie: Movies.find({'name': Session.get('rea')}).fetch(),
+      movie: Movies.find(Session.get('name')).fetch(),
       director: Directors.find().fetch(), // recupère les données de la collection
   };
 })(FilmApp); // exporte la class Filmapp

@@ -4,8 +4,7 @@ html {
 
 main {
     width: 100%;
-    max-width: 1024px;
-    margin: auto;
+    font-family: 'Oswald', sans-serif;
 } 
 
 ul {
@@ -13,8 +12,80 @@ ul {
 }
 
 .main-container {
-    width: 60%;
+    width: 100%;
     margin: auto;
-    padding: 1em 0;
     font-size: 1.4rem;
+}
+
+.content {
+    padding: 0 25%;
+//    background: #383838;
+}
+
+form {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    align-items: center;
+    margin: 4% 0 0 0;
+}
+
+input {
+    width: 44%;
+    padding: 1% 2%;
+    border-radius: 50px;
+    border: 2px solid #FF3347;
+    text-transform: capitalize;
+    &::placeholder{
+        font-weight: 200;
+        color: #bcbcbc;
+    }
+    &:focus{
+        outline: 0;
+    }
+}
+
+button[type='submit'] {
+    border-radius: 50px;
+    padding: 1%;
+    margin: 2% auto;
+    width: 20%;
+    background: #FF3347;
+    text-transform: uppercase;
+    color: #FFF;
+    border: none;
+    &:focus{
+        outline: 0;
+        background: #e01d2d;
+    }
+}
+
+a.name {
+    border-radius: 4px;
+    color: #FF3347;
+    font-size: 0.8em;
+    font-weight: 200;
+    display: block;
+    text-align: center;
+}
+
+li.director {
+    border: 2px solid #FF3347;
+    border-radius: 4px;
+    padding: 1% 2%;
+    margin: 4% 2%;
+    display: inline-block;
+    &:first-child {
+        margin: 4% 1% 4% 0; 
+    }
+    &:last-child {
+        margin: 4% 0 4% 1%; 
+    }
+}
+
+span {
+    color: #FF3347;
+    font-size: 0.8em;
+    font-weight: 200;
+    cursor: pointer;
 }

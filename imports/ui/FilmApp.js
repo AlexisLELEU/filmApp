@@ -34,7 +34,6 @@ class FilmApp extends Component {
     });
     this._newMovie.value = '';
 
-
     console.log(this._newDirector.value);
     Directors.insert({
       name : this._newDirector.value
@@ -46,21 +45,20 @@ class FilmApp extends Component {
         Session.set('name',  {});
     }
 
-
-
   render() {
     return (
       <div className="main-container">
         <header>
           <h1>Movies List</h1>
         </header>
-        <div>
+        <div className="content">
           <Form 
             submit={this.handleSubmit} 
             refMovie={(el) => this._newMovie = el} 
             refDir={(el) => this._newDirector = el}/>
 
-            <a href="#" onClick={this.showAll} className="name">All movie</a>
+            <a href="#" onClick={this.showAll} className="name">Reset tags</a>
+
           <DirectorsList
             show={this.renderDirectors()}/>
 

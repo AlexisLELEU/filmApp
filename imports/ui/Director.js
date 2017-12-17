@@ -25,7 +25,7 @@ export default class Director extends Component {
              &times;
          </button>
 
-         <a href="#" onClick={this.filterMovie} className="name">{this.props.name} (bd: directors)</a>
+         <span onClick={this.filterMovie} className="name">{this.props.name} (bd: directors)</span>
      </li>
    );
   }

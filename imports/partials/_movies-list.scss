@@ -1,6 +1,12 @@
 .movies-list {
     width: 100%;
-
+    th {
+        text-transform: uppercase;
+        letter-spacing: 1px;
+    }
+    td {
+        text-align: center;
+    }
     .last-col {
         text-align: center;
     }
